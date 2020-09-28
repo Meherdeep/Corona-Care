@@ -210,10 +210,19 @@ class _RealTimeMessagingState extends State<RealTimeMessaging> {
                 child: ListTile(
                   title: Align(
                     alignment: _infoStrings[i].startsWith('%') ? Alignment.bottomLeft:Alignment.bottomRight,
-                      child: Container(
-                        padding: EdgeInsets.only(left: 5, right: 5),
-                        color: Color(0xFFDCDCDC),
-                        child: _infoStrings[i].startsWith('%') ? Text(_infoStrings[i].substring(1), maxLines: 10, overflow: TextOverflow.ellipsis,textAlign: TextAlign.right,style: TextStyle(color: Colors.black),): Text(_infoStrings[i], maxLines: 10, overflow: TextOverflow.ellipsis,textAlign: TextAlign.right,style: TextStyle(color: Colors.black),),
+                      child: Column(
+                        crossAxisAlignment: _infoStrings[i].startsWith('%') ? CrossAxisAlignment.start:  CrossAxisAlignment.end,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2 ),
+                            color: _infoStrings[i].startsWith('%') ? Color(0xFFDCDCDC) : Color(0xFF3A97DC),
+                            child: _infoStrings[i].startsWith('%') ? Text(_infoStrings[i].substring(1), maxLines: 10, overflow: TextOverflow.ellipsis,textAlign: TextAlign.right,style: TextStyle(color: Colors.black),): Text(_infoStrings[i], maxLines: 10, overflow: TextOverflow.ellipsis,textAlign: TextAlign.right,style: TextStyle(color: Colors.white),)
+                          ),
+                          SizedBox(
+                            height: 2,
+                          ),
+                          _infoStrings[i].startsWith('%') ? Text('Dr. '+ widget.channelName, style: TextStyle(color: Colors.grey, fontSize: 12),) : Text('You' , style: TextStyle(color: Colors.grey, fontSize: 12 ),)
+                        ],
                       ),
                     ),
                   ),
